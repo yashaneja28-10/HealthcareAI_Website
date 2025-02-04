@@ -1,5 +1,5 @@
 from fuzzywuzzy import fuzz
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import pandas as pd
 
@@ -32,6 +32,10 @@ def extract_symptoms(user_input):
     user_input = user_input.lower()
     extracted = [symptom for symptom in common_symptoms if fuzz.partial_ratio(symptom.lower(), user_input) > 80]
     return extracted
+
+@app.route('/')
+def home():
+    return render_template("index.html")  # Serve your main HTML file
 
 @app.route('/predict', methods=['POST'])
 def predict_disease():
