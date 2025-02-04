@@ -34,11 +34,32 @@ def extract_symptoms(user_input):
     extracted = [symptom for symptom in common_symptoms if fuzz.partial_ratio(symptom.lower(), user_input) > 80]
     return extracted
 
+# **Serve the Main Page (`index.html`)**
 @app.route('/')
 def home():
-    # Serve the index.html directly from the current directory
     return send_from_directory(os.getcwd(), 'index.html')
 
+# **Serve Other HTML Pages**
+@app.route('/<path:filename>')
+def serve_html(filename):
+    return send_from_directory(os.getcwd(), filename)
+
+# **Serve CSS Files**
+@app.route('/css/<path:filename>')
+def serve_css(filename):
+    return send_from_directory('css', filename)
+
+# **Serve JS Files**
+@app.route('/js/<path:filename>')
+def serve_js(filename):
+    return send_from_directory('js', filename)
+
+# **Serve Favicon (Prevents 404 Error)**
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.getcwd(), 'favicon.ico')
+
+# **Disease Prediction API**
 @app.route('/predict', methods=['POST'])
 def predict_disease():
     data = request.json
