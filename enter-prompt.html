@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Symptoms | Healthcare</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Enter Your Symptoms</h2>
+
+        <!-- Larger Textarea for Symptoms -->
+        <textarea id="symptomsInput" placeholder="Type your symptoms here..." required></textarea>
+        
+        <!-- Predict Disease Button -->
+        <button id="predictBtn" class="predict-btn">Predict Disease</button>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Event listener for the "Predict Disease" button
+        document.getElementById("predictBtn").addEventListener("click", function() {
+            let symptoms = document.getElementById("symptomsInput").value;
+            
+            if (!symptoms) {
+                alert("Please enter symptoms!");
+                return;
+            }
+
+            // Prepare the data to send to the API
+            const requestData = { symptoms: symptoms };
+
+            // Send POST request to Flask API
+            fetch('http://localhost:5000/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display the result (predicted disease and symptoms identified)
+                if (data.error) {
+                    console.log("Error from API:", data.error); // Log the error message for debugging
+                    document.getElementById("result").innerText = "Error: " + data.error;
+                } else {
+                    document.getElementById("result").innerHTML = `
+                        <p>Symptoms Identified: ${data.extracted_symptoms.join(', ')}</p>
+                        <p>Predicted Disease: ${data.predicted_disease}</p>
+                    `;
+                }
+            })
+            .catch(error => {
+                console.error("Error in prediction:", error); // Log the error for debugging
+                document.getElementById("result").innerText = "Error in prediction. Please try again later.";
+            });
+        });
+
+        // Event listener for the symptom buttons (appends symptoms to the textarea)
+        document.querySelectorAll(".symptom-btn").forEach(button => {
+            button.addEventListener("click", function() {
+                let textarea = document.getElementById("symptomsInput");
+                textarea.value += textarea.value ? ", " + this.innerText : this.innerText;
+            });
+        });
+    </script>
+</body>
+</html>
