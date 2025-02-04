@@ -16,12 +16,11 @@ document.getElementById("predictBtn").addEventListener("click", function() {
         return;
     }
 
-    // Prepare the data to send to Flask
+    // Prepare the data to send to Flask (Render backend)
     const requestData = { symptoms: symptoms };
 
-    // Send POST request to Flask API
-    fetch('https://your-app-name.onrender.com/predict', {  // ✅ Use the Render URL
-
+    // Send POST request to Render API
+    fetch('https://healthcareai-website-6.onrender.com/predict', {  // ✅ Updated Render URL
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
