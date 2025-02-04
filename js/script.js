@@ -20,7 +20,7 @@ document.getElementById("predictBtn").addEventListener("click", function() {
     const requestData = { symptoms: symptoms };
 
     // Send POST request to Render API
-    fetch('https://healthcareai-website-6.onrender.com/predict', {  // ✅ Updated Render URL
+    fetch('https://healthcareai-website-6.onrender.com/predict', {  // ✅ Updated to Render's URL
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -29,7 +29,7 @@ document.getElementById("predictBtn").addEventListener("click", function() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log("Response Data: ", data);  // Log response for debugging
+        console.log("API Response:", data);  // Log response for debugging
         if (data.error) {
             document.getElementById("result").innerText = "Error: " + data.error;
         } else {
@@ -40,7 +40,7 @@ document.getElementById("predictBtn").addEventListener("click", function() {
         }
     })
     .catch(error => {
-        console.error("Error in prediction:", error);  
+        console.error("Fetch Error:", error);  // Log fetch errors
         document.getElementById("result").innerText = "Error in prediction. Please try again later.";
     });
 });
