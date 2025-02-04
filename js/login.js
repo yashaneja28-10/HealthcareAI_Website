@@ -4,8 +4,8 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     const password = document.getElementById("password").value;
 
     if (userInput && password) {
-        localStorage.setItem("user", userInput);
-        window.location.href = "index.html";
+        localStorage.setItem("user", userInput); // Store user login
+        window.location.href = "index.html"; // Redirect to homepage
     } else {
         alert("Please enter valid details");
     }
