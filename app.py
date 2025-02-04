@@ -1,7 +1,8 @@
 from fuzzywuzzy import fuzz
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import pandas as pd
+import os
 
 app = Flask(__name__)
 CORS(app)  # Enables frontend (5500) to talk to backend (5000)
@@ -35,7 +36,8 @@ def extract_symptoms(user_input):
 
 @app.route('/')
 def home():
-    return render_template("index.html")  # Serve your main HTML file
+    # Serve the index.html directly from the current directory
+    return send_from_directory(os.getcwd(), 'index.html')
 
 @app.route('/predict', methods=['POST'])
 def predict_disease():
