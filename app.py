@@ -5,7 +5,7 @@ import pandas as pd
 import os
 
 app = Flask(__name__)
-CORS(app)  # Enables frontend (5500) to talk to backend (5000)
+CORS(app, resources={r"/*": {"origins": "*"}})  # ✅ Allows all requests (Fixes Mobile API issue)
 
 # **Load dataset from Google Drive**
 csv_url = "https://drive.google.com/uc?export=download&id=17m7I4UJ955rZo5zRSnsVuCzzrcTxSJ7r"
