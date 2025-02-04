@@ -5,7 +5,17 @@ import pandas as pd
 import os
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})  # ✅ Allows all requests (Fixes Mobile API issue)
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)  # ✅ Fix CORS for all devices
+
+# **Fix Chrome Private Network Warning**
+@app.after_request
+def add_cors_headers(response):
+    """Ensures that all responses include correct CORS headers for private network access."""
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
+    response.headers["Access-Control-Allow-Private-Network"] = "true"  # ✅ Fixes Chrome warning
+    return response
 
 # **Load dataset from Google Drive**
 csv_url = "https://drive.google.com/uc?export=download&id=17m7I4UJ955rZo5zRSnsVuCzzrcTxSJ7r"
