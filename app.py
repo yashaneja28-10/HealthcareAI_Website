@@ -54,11 +54,6 @@ def serve_css(filename):
 def serve_js(filename):
     return send_from_directory('js', filename)
 
-# **Serve Favicon (Prevents 404 Error)**
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.getcwd(), 'favicon.ico')
-
 # **Disease Prediction API**
 @app.route('/predict', methods=['POST'])
 def predict_disease():
