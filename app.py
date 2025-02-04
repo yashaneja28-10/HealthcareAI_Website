@@ -2,22 +2,13 @@ from fuzzywuzzy import fuzz
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import pandas as pd
-import os
 
 app = Flask(__name__)
 CORS(app)  # Enables frontend (5500) to talk to backend (5000)
 
-# **Check if running locally or deployed**
-USE_LOCAL_CSV = os.path.exists("disease_symptoms.csv")
-
-if USE_LOCAL_CSV:
-    print("🔹 Using Local CSV File")
-    df = pd.read_csv('disease_symptoms.csv')  # Load local CSV
-else:
-    print("🔹 Using Google Drive CSV")
-    csv_url = "https://drive.google.com/uc?export=download&id=17m7I4UJ955rZo5zRSnsVuCzzrcTxSJ7r"
-    df = pd.read_csv(csv_url)  # Load from Google Drive
-
+# **Load dataset from Google Drive**
+csv_url = "https://drive.google.com/uc?export=download&id=17m7I4UJ955rZo5zRSnsVuCzzrcTxSJ7r"
+df = pd.read_csv(csv_url)
 df.columns = df.columns.str.strip()  # Clean column names
 
 # Define disease column and symptom columns
@@ -65,4 +56,4 @@ def predict_disease():
     })
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)  # Ensure app can run on Render
