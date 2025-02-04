@@ -20,7 +20,8 @@ document.getElementById("predictBtn").addEventListener("click", function() {
     const requestData = { symptoms: symptoms };
 
     // Send POST request to Flask API
-    fetch('http://localhost:5000/predict', {  // Ensure it's POST, not GET
+    fetch('https://your-app-name.onrender.com/predict', {  // ✅ Use the Render URL
+
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
