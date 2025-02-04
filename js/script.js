@@ -1,3 +1,13 @@
+document.addEventListener("DOMContentLoaded", function() {
+    let user = localStorage.getItem("user"); // Check if user is logged in
+
+    if (!user) {
+        // Redirect to login page if not logged in
+        window.location.href = "login.html";
+    }
+});
+
+// Predict Disease Function
 document.getElementById("predictBtn").addEventListener("click", function() {
     let symptoms = document.getElementById("symptomsInput").value.trim();
 
