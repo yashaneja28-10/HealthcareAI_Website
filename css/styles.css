@@ -1,0 +1,159 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #0d0d0d;
+    color: #fff;
+    text-align: center;
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #0a0a0a;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+}
+
+nav h1 {
+    font-size: 30px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #ff00cc, #3333ff);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Container Box */
+.container {
+    width: 40%;
+    margin: auto;
+    padding: 30px;
+    background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+    border-radius: 12px;
+    margin-top: 50px;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Headings */
+h2 {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+/* Symptom Buttons */
+.symptom-btn {
+    background: #222;
+    color: white;
+    border: 2px solid white;
+    padding: 12px 20px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 25px; 
+    transition: all 0.3s ease-in-out;
+}
+
+.symptom-btn:hover {
+    background: #333;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+/* Different Styled Predict Disease Button */
+.predict-btn {
+    background: linear-gradient(135deg, #ff00cc, #3333ff);
+    color: white;
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-top: 20px; /* Add spacing between the symptom buttons and the predict button */
+}
+
+/* Button Hover Effect */
+.predict-btn:hover {
+    background: linear-gradient(135deg, #3333ff, #ff00cc);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+}
+
+/* Health History Button */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Logout Button */
+#logoutBtn {
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+#logoutBtn:hover {
+    color: #ff00cc;
+}
+
+/* Page Layout and Spacing */
+p {
+    font-size: 18px;
+    color: #ccc;
+    margin-bottom: 15px;
+}
+
+input {
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    background: #222;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    background: #333;
+}
+
+button {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #ffffff, #aaaaaa);
+    color: black;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    transform: scale(1.05);
+}
